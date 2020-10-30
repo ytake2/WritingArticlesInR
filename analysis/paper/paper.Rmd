@@ -1,0 +1,163 @@
+---
+title             : "Reproducible Meta-analysis" #論文タイトル
+shorttitle        : "Repmeta"
+
+author: 
+  - name          : "Yoshitake Takebayashi"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "1-Hikarigaoka, Fukushimam, Fukushima, Japan"
+    email         : "ytake2@fmu.ac.jp"
+    role:  
+      - Conceptualization
+      - Writing - Original Draft Preparation
+      - Writing - Review & Editing
+  - name          : "Yoshihiko Kunisato"
+    affiliation   : "1,2"
+    role:
+      - Writing - Review & Editing
+
+affiliation:
+  - id            : "1"
+    institution   : "Fukushima Medical University"
+  - id            : "2"
+    institution   : "Senshu University"
+
+authornote: |
+  Yoshitake Takebayashi is a assistant professor at Department of Health Risk Communication, School of Medichine, Fukuchima Medical University. Yoshihiko Kunisato is a associate professor at Department of Psychology,m School of Human Sciences, Senshu University.
+
+
+abstract: |
+  Expressive writing is beneficial for promoting both positive psychological and physical health outcomes. Unfortunately, inhibiting emotions is related to impairments in psychological and physical health. James Pennebaker and others have used expressive writing as an experimental manipulation to gauge its efficacy in treating a wide variety of physical and psychological outcomes. While many studies have been conducted that examine the efficacy of expressive writing across such outcomes, a considerable amount of these studies tend to neglect necessary considerations such as different levels of symptomatology, power, and meaningfulness of respective effect sizes. Six previous meta-analyses have been conducted that examine expressive writing's effect on psychological outcomes. However, these studies focus on the experimental versus control group effect size. Thus, our meta-analysis sought to examine the efficacy of an expressive writing task on only the experimental conditions in studies measuring posttraumatic stress, posttraumatic growth, and quality of life using random effects models. Results indicated a small overall effect size for posttraumatic stress and negligible to small effect sizes for posttraumatic growth and quality of life. However, those studies requiring a diagnosis of PTSD exhibited a medium to large effect size. Implications for future research design and interpretation of published research are discussed. 
+  
+keywords          : "keywords"
+wordcount         : "X"
+
+bibliography      : ["r-references.bib","meta_bib_ref.bib"]
+
+floatsintext      : no
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : yes
+mask              : no
+draft             : yes
+
+documentclass     : "apa6"
+classoption       : "man"
+output            : papaja::apa6_pdf
+---
+
+
+```{r setup, include = FALSE}
+library("papaja")
+r_refs("r-references.bib")
+```
+
+```{r analysis-preferences}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+
+# Methods
+
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study.
+
+## Participants
+
+## Material
+
+## Procedure
+
+## Data analysis
+
+# Results
+
+```{r}
+library(ggplot2)
+qplot(x=cars[,1],y=cars[,2])+
+  xlab("Age")+ylab("Depression")
+```
+
+
+```{r, fig.cap="Correlation between x and y"}
+library(ggplot2)
+qplot(x=cars[,1],y=cars[,2])+
+  xlab("Age")+ylab("Depression")+
+  theme_apa()
+```
+
+
+```{r,fig.cap = "beeplot"}
+apa_beeplot(data = npk, id = "block", 
+            dv = "yield", 
+            factors = c("N", "P", "K"),
+            ylim = c(0, 80), 
+            level = .34, las = 1
+            )
+
+```
+
+
+```{r,fig.cap = "lineplot"}
+apa_lineplot(data = npk, id = "block", 
+            dv = "yield", 
+            factors = c("N", "P", "K"),
+            ylim = c(0, 80), 
+            level = .34, las = 1
+            )
+
+```
+
+```{r,fig.cap = "barplot"}
+apa_barplot(data = npk, id = "block", 
+            dv = "yield", 
+            factors = c("N", "P", "K"),
+            ylim = c(0, 80), 
+            level = .34, las = 1)
+
+```
+
+```{r}
+my_table <- t(apply(cars, 2, function(x) # Create data
+  round(c(Mean = mean(x), SD = sd(x), Min = min(x), Max = max(x)), 2)
+))
+
+apa_table(
+  my_table
+  , align = c("l", rep("r", 3))
+  , caption = "A summary table of the cars dataset."
+)
+
+```
+
+```{r}
+lm_out <- lm(Sepal.Length~Sepal.Width+Petal.Length+Petal.Width,
+             data = iris)
+
+apa_lm <- apa_print(lm_out)
+apa_table(
+  apa_lm$table
+  , caption = "A full regression table."
+)
+
+```
+
+
+
+# Discussion
+
+\newpage
+
+# References
+
+```{=tex}
+\begingroup
+\setlength{\parindent}{-0.5in}
+\setlength{\leftskip}{0.5in}
+```
+::: {#refs custom-style="Bibliography"}
+:::
+
+\endgroup

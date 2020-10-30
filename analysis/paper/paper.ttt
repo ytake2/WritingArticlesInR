@@ -1,0 +1,46 @@
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:unnamed-chunk-6}A summary table of the cars dataset.}
+
+\begin{tabular}{lrrrl}
+\toprule
+ & \multicolumn{1}{c}{Mean} & \multicolumn{1}{c}{SD} & \multicolumn{1}{c}{Min} & \multicolumn{1}{c}{Max}\\
+\midrule
+speed & 15.40 & 5.29 & 4.00 & 25.00\\
+dist & 42.98 & 25.77 & 2.00 & 120.00\\
+\bottomrule
+\end{tabular}
+
+\end{threeparttable}
+\end{center}
+
+\end{table*}
+\begin{table*}[hbt]
+\ifnextchar[{\eatarg}{}
+[tbp]
+
+\begin{center}
+\begin{threeparttable}
+
+\caption{\label{tab:unnamed-chunk-7}A full regression table.}
+
+\begin{tabular}{lllll}
+\toprule
+Predictor & \multicolumn{1}{c}{$b$} & \multicolumn{1}{c}{95\% CI} & \multicolumn{1}{c}{$t(146)$} & \multicolumn{1}{c}{$p$}\\
+\midrule
+Intercept & 1.86 & $[1.36$, $2.35]$ & 7.40 & < .001\\
+Sepal Width & 0.65 & $[0.52$, $0.78]$ & 9.77 & < .001\\
+Petal Length & 0.71 & $[0.60$, $0.82]$ & 12.50 & < .001\\
+Petal Width & -0.56 & $[-0.81$, $-0.30]$ & -4.36 & < .001\\
+\bottomrule
+\end{tabular}
+
+\end{threeparttable}
+\end{center}
+
+\end{table*}

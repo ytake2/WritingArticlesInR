@@ -1,0 +1,25 @@
+xaringan::inf_mr()
+install.packages("xaringanthemer")
+library(xaringanthemer)
+install.packages("leaflet")
+library(xaringanthemer)
+install.packages("showtext")
+library(xaringanthemer)
+style_mono_accent(
+base_color = "#1c5253",
+header_font_google = google_font("Josefin Sans"),
+text_font_google   = google_font("Montserrat", "300", "300i"),
+code_font_google   = google_font("Fira Mono")
+)
+xaringan::inf_mr()
+xaringan::inf_mr()
+rrtools::use_analysis()
+remotes::install_github("benmarwick/rrtools")
+rrtools::use_analysis()
+?create_compendium()
+rrtools::create_compendium()
+dir.create("analysis")
+dir.create("analysis")
+dir.create("analysis/paper")
+dir.create("analysis/figures")
+dir.create("analysis/data")

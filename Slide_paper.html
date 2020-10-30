@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Rmdで英語論文を書いてみよう</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="竹林 由武" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Rmdで英語論文を書いてみよう
+### 竹林 由武
+### 福島県立医科大学医学部
+### 2020/10/31
+
+---
+
+
+background-image: url(https://pbs.twimg.com/media/CasouLgUEAQvHrL.png)
+
+&lt;style type="text/css"&gt;
+pre code, pre, code {
+  white-space: pre !important;
+  overflow-x: scroll !important;
+  word-break: keep-all !important;
+  word-wrap: initial !important;
+}
+&lt;/style&gt;
+
+
+
+
+
+
+
+
+---
+class: inverse, center, middle
+
+# テンプレート
+
+---
+class: left, top
+
+# 英語論文テンプレパッケージ
+
+--
+
+### papaja 
+
+&gt; - APAの出版マニュアルに対応したテンプレート  
+- 6版にはもちろん, 最新の7版にも対応
+
+
+
+--
+
+### rticles
+
+
+&gt; - APA以外の学術誌にほぼ対応  
+　例) Plos One, Frontier, Elsevier, SAGEなど
+
+
+
+---
+class: inverse, center, middle
+
+# この感動を君と
+
+---
+class: left, top
+
+# パッケージのインストール
+
+注) paper dockerを使用の方はすでにインストール済なので以下の操作は不要です。
+
+### [papaja](https://github.com/crsh/papaja)のインストール
+
+
+
+```r
+remotes::install_github("crsh/papaja")
+```
+
+### [rticles](https://github.com/rstudio/rticles)のインストール
+
+
+```r
+remotes::install_github("rstudio/rticles")
+```
+
+
+---
+class: inverse, center, middle
+
+# 焦っちゃだめ...
+
+
+---
+class: inverse, center, middle
+
+# まず環境設定しよ❤️
+
+
+
+---
+class: left, top
+
+
+# [rrtools](https://github.com/benmarwick/rrtools)のインストール
+
+
+![](img/rrtools.png)
+
+
+```r
+remotes::install_github("benmarwick/rrtools")
+```
+
+- Research Compediumをサクッと作ってくれる関数が充実。
+- ただResearch Compediumの全体像を理解してないと手に負えないファイルがたくさんセットになってる (難しくはない &gt;&gt;&gt; 最後のセクションで触れます)
+- ここでは自力で最小構成のCompediumを作ってみる
+
+
+```r
+dir.create("analysis")
+dir.create("analysis/paper")
+dir.create("analysis/figures")
+dir.create("analysis/data")
+```
+
+
+
+---
+class: inverse, center, middle
+
+# お待たせしました！！！
+
+
+---
+class: left, top
+
+# papajaのテンプレート
+
+- **[File]** &gt;&gt;&gt; **[New]** &gt;&gt;&gt; **[R markdown]** &gt;&gt;&gt; **[From Template]** &gt;&gt;&gt; **[APA article]**
+
+.pull-left[
+&lt;img src="img/rmd1.png" width="200" height="200" /&gt;
+]
+
+.pull-right[
+&lt;img src="img/apa1.png" width="1200" height="400" /&gt;
+]
+
+---
+class: left, top
+
+# papajaのテンプレート
+
+
+- このファイルを編集してknitrすればOK
+- とりま任意のファイル名つけてknitrしよ❤️
+- 今回はcompediumのpaperフォルダに保存しましょ
+
+.pull-left[
+&lt;img src="img/rmd3.png" width="300" height="300" /&gt;
+]
+
+
+.pull-right[
+&lt;img src="img/rmd4.png" width="500" height="500" /&gt;
+]
+
+
+---
+class: left, top
+
+# エディタポップアウトの勧め
+
+### 理由：書きやすい！
+
+.pull-left[
+&lt;img src="img/rmd5.png" width="312" /&gt;
+]
+
+
+.pull-right[
+&lt;img src="img/rmd6.png" width="2040" /&gt;
+]
+
+
+---
+class: left, top
+
+# knitrボタンをクリック！
+
+&lt;img src="img/rmd7.png" width="2045" /&gt;
+
+
+
+---
+class: left, top
+
+## なんかそれっぽいのできてる〜❤️
+
+- できたPDFをスクロールしてしばしご堪能ください
+
+&lt;img src="img/rmd8.png" width="500" height="500" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: inverse, center, middle
+
+# コンテンツ編集するぞ
+
+---
+class: left, top
+
+## YAMLの設定：タイトル, 著者名など
+
+
+```yaml
+---
+title             : "Reproducible Meta-analysis"
+
+shorttitle        : "Repmeta"
+
+author: 
+  - name          : "Yoshitake Takebayashi"
+    affiliation   : "1"
+    corresponding : yes    # Define only one corresponding author
+    address       : "1-Hikarigaoka, Fukushimam, Fukushima, Japan"
+    email         : "ytake2@fmu.ac.jp"
+    role:  
+      - Conceptualization
+      - Writing - Original Draft Preparation
+      - Writing - Review &amp; Editing
+---
+```
+
+
+
+---
+class: left, top
+
+## YAMLの設定
+
+### 所属**[affiliation]**を書き換えてみよう。
+
+
+```yaml
+---
+  - name          : "Yoshihiko Kunisato"
+    affiliation   : "1,2"
+    role:
+      - Writing - Review &amp; Editing
+
+affiliation:
+  - id            : "1"
+    institution   : "Fukushima Medical University"
+  - id            : "2"
+    institution   : "Senshu University"
+---
+```
+
+
+---
+class: left, top
+
+## YAMLの設定：著者詳細情報
+
+### 著者詳細情報[authornote]を書き換えてみよう。
+
+
+
+```yaml
+---
+authornote: |
+  Yoshitake Takebayashi is a assistant professor at Department of Health Risk Communication, School of Medichine, Fukuchima Medical University. Yoshihiko Kunisato is a associate professor at Department of Psychology,m School of Human Sciences, Senshu University.
+---
+```
+
+### 抄録[abstract]を書き換えてみよう。
+
+
+```yaml
+---
+abstract: |
+  Expressive writing is beneficial for promoting both positive psychological and physical health outcomes. Unfortunately, inhibiting emotions is related to impairments in psychological and physical health. James Pennebaker and others have used expressive writing as an experimental manipulation to gauge its efficacy in treating a wide variety of physical and psychological outcomes. While many studies have been conducted that examine the efficacy of expressive writing across such outcomes, a considerable amount of these studies tend to neglect necessary considerations such as different levels of symptomatology, power, and meaningfulness of respective effect sizes. Six previous meta-analyses have been conducted that examine expressive writing's effect on psychological outcomes. However, these studies focus on the experimental versus control group effect size. Thus, our meta-analysis sought to examine the efficacy of an expressive writing task on only the experimental conditions in studies measuring posttraumatic stress, posttraumatic growth, and quality of life using random effects models. Results indicated a small overall effect size for posttraumatic stress and negligible to small effect sizes for posttraumatic growth and quality of life. However, those studies requiring a diagnosis of PTSD exhibited a medium to large effect size. Implications for future research design and interpretation of published research are discussed. 
+---
+```
+
+---
+class: left, top
+
+## YAMLの設定:その他の設定
+
+
+```yaml
+---
+keywords          : "meta-analysis, depression, anxiety, PTSD"
+wordcount         : "X"
+bibliography      : ["r-references.bib", "meta_bib.bib"]
+---
+```
+
+- **[keyword]:** 論文のキーワード
+- **[kwordcount]:** knitrすると本文の文字数がカウントされてConsoleに出力されるのでXに転記(ここだけ手動じゃない)
+
+---
+class: left, top
+
+## YAMLの設定:その他の設定
+
+
+```yaml
+---
+bibliography      : ["r-references.bib", "meta_bib.bib"]
+---
+```
+
+- **[bibliography]:** 引用文献の書誌情報を集めた.bibファイルを指定  
+    - r-ferences.bibはpapajaのr_refs関数で、解析に使ったパッケージの引用情報を自動で抽出して作成できる
+
+
+```r
+library("papaja")
+r_refs("r-references.bib")
+```
+
+
+---
+class: left, top
+
+## YAMLの設定：その他の設定
+
+
+```yaml
+---
+#図表を文中にいれるか、最後にまとめるか
+floatsintext      : no  
+
+#...listは図表のタイトルを一覧にして最後にまとめるか
+figurelist        : no 
+tablelist         : no
+footnotelist      : no
+
+#文章番号いれるか
+linenumbers       : yes
+
+#著者情報ページを隠すか
+mask              : yes
+
+#ドラフトマークをいれるか
+draft             : no
+---
+```
+
+
+---
+class: left, top
+
+## YAMLの設定：ドラフトにする
+
+
+```yaml
+---
+#ドラフトマークをいれるか
+draft             : yes
+---
+```
+
+### knitrしてみると....
+
+
+---
+class: left, top
+
+### なんということでしょう❤️
+
+&lt;img src="img/rmd10.png" width="500" height="500" /&gt;
+
+
+---
+class: left, top
+
+## Tips: 本文書き込み前に
+
+- 解析やシミュレーションで乱数を使用する場合には、Chunkごとにいちいち設定し直さずにグローバルに設定しておくのも便利
+
+
+```r
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+
+
+
+---
+class: left, top
+
+## 本文の書き込み
+
+- **#** : 大見出し
+- **##** : 小見出し
+- 基本的には文章をただ書いていくだけ
+
+
+
+```md
+# Introduction
+
+# Methods
+
+## Participants
+
+## Material
+
+## Procedure
+
+## Data analysis
+
+# Results
+
+# Discussion
+```
+
+---
+class: left, top
+
+## ここがエモい
+
+### 1. 引用文献の挿入が楽
+### 2. 解析結果の図表を転記しなくていい
+### 3. Rで解析した数値をそのまま文章に埋め込める
+
+---
+class: left, top
+
+## 引用文献の挿入が楽
+
+- citrパッケージを使いましょう。
+- paper dockerには搭載済
+
+
+```r
+#remotes::install_github("ropensci/RefManageR")
+#remotes::install_github("crsh/citr")
+library(citr)
+```
+
+
+- .bibファイルに収納されている書誌情報を本文中で指定していくと、knitrすれば自動で引用文献リストを文末につけてくれる。
+- 引用文献リストのスタイルは.cslファイルをYAMLで指定する。
+- papajaの場合、自動でapaスタイル(apa6.csl)の引用文献リストを作ってくれる。
+- ググればほとんどの雑誌の.cslファイルがみつかります。
+- .cslファイルがない雑誌には投稿しません。
+
+
+---
+class: left, top
+
+# 引用の挿入
+
+### 1. .bibファイルを作る(作り方はググる)
+### 2. .bibファイルをYAMLのbibliographyに指定
+### 3. 文中の適当な箇所でcitrのアドイン起動
+### 4. ポチる
+
+今回は[こちらから.bibファイルを拝借し](https://osf.io/dje6m/download)paperフォルダに保存しましょう。
+
+---
+class: left, top
+
+### 引用の書き方
+
+| Citation type | Syntax | Rendered citation |
+|:--------------|:-------|:------------------|
+| Citation within parentheses | `[@james_1890]` | (James, 1890) |
+| Multiple citations | `[@james_1890; @bem_2011]` | (Bem, 2011; James, 1890) |
+| In-text citations | `@james_1890` | James (1890) |
+| Year only | `[-@bem_2011]` | (2011) |
+
+####[https://crsh.github.io/papaja_man/writing.html#citation-styles](https://crsh.github.io/papaja_man/writing.html#citation-styles)
+
+---
+class: left, top
+
+### citrの使い方
+
+- 本文中の引用文献挿入箇所にカーソルを合わせる
+- **[Addins]** &gt;&gt;&gt; **[citr]**
+
+.pull-left[
+&lt;img src="img/citr1.png" width="500" height="300" /&gt;
+]
+
+.pull-right[
+&lt;img src="img/citr2.png" width="500" height="300" /&gt;
+]
+
+- bibファイルを自動で読み混んでくれる
+- zoteroのデスクトップを開いておくと, zoteroの入れてる論文書誌情報をまるっと使える
+
+---
+class: left, top
+
+## 図表作成便利関数: theme_apa
+
+素
+
+```r
+#library(ggplot2)
+#qplot(x=cars[,1],y=cars[,2])+
+#  xlab("Age")+ylab("Depression")
+```
+    
+theme_apa()
+
+```r
+#library(ggplot2)
+#qplot(x=cars[,1],y=cars[,2])+
+#  xlab("Age")+ylab("Depression")+
+#  theme_apa()
+```
+
+
+---
+class: left, top
+
+## 図表作成便利関数: theme_apa
+
+.pull-left[
+素
+&lt;div class="figure"&gt;
+&lt;img src="Slide_paper_files/figure-html/unnamed-chunk-30-1.png" alt="Correlation between x and y" width="400" height="400" /&gt;
+&lt;p class="caption"&gt;Correlation between x and y&lt;/p&gt;
+&lt;/div&gt;
+]
+ 
+  
+    
+.pull-right[
+theme_apa()
+&lt;div class="figure"&gt;
+&lt;img src="Slide_paper_files/figure-html/unnamed-chunk-31-1.png" alt="Correlation between x and y" width="400" height="400" /&gt;
+&lt;p class="caption"&gt;Correlation between x and y&lt;/p&gt;
+&lt;/div&gt;
+]
+
+
+---
+class: left, top
+
+## 図表作成便利関数: plot三兄弟
+
+### 　apa_beeplot()
+### 　apa_lineplot()
+### 　apa_barplot()
+
+- beaswarms パッケージが必要です
+
+```r
+# remotes::install_cran("beeswarm")
+```
+
+- 図表のキャプションはChunkの引数で, fig.cap="任意のキャプション名" とすれば、登場する順に図表番号もふってくれる
+
+
+
+---
+class: left, top
+
+## 図表作成便利関数: apa_beeplot
+
+
+```r
+apa_beeplot(data = npk, id = "block", 
+            dv = "yield", 
+            factors = c("N", "P", "K"),
+            ylim = c(0, 80), 
+            level = .34, las = 1
+            )
+```
+
+&lt;img src="Slide_paper_files/figure-html/unnamed-chunk-33-1.png" width="500" height="300" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: left, top
+
+## 作図便利関数: apa_lineplot
+
+
+```r
+apa_lineplot(data = npk, id = "block", 
+            dv = "yield", 
+            factors = c("N", "P", "K"),
+            ylim = c(0, 80), 
+            level = .34, las = 1
+            )
+```
+
+&lt;img src="Slide_paper_files/figure-html/unnamed-chunk-34-1.png" width="500" height="300" style="display: block; margin: auto;" /&gt;
+
+---
+class: left, top
+
+## 作図便利関数: apa_barplot
+
+
+```r
+apa_barplot(data = npk, id = "block", 
+            dv = "yield", 
+            factors = c("N", "P", "K"),
+            ylim = c(0, 80), 
+            level = .34, las = 1)
+```
+
+&lt;img src="Slide_paper_files/figure-html/unnamed-chunk-35-1.png" width="500" height="300" style="display: block; margin: auto;" /&gt;
+
+
+---
+class: left, top
+
+### 表作成便利関数: apa_table
+
+
+```r
+my_table &lt;- t(apply(cars, 2, function(x) # Create data
+  round(c(Mean = mean(x), SD = sd(x), Min = min(x), Max = max(x)), 2)
+))
+
+apa_table(
+  my_table
+  , align = c("l", rep("r", 3))
+  , caption = "A summary table of the cars dataset."
+)
+```
+
+
+### 表作成便利関数: apa_print
+
+
+```r
+lm_out &lt;- lm(Sepal.Length~Sepal.Width+Petal.Length+Petal.Width,
+             data = iris)
+
+apa_lm &lt;- apa_print(lm_out)
+apa_table(
+  apa_lm$table
+  , caption = "A full regression table."
+)
+```
+
+
+---
+class: left, top
+
+
+.pull-left[
+apa_table
+&lt;img src="img/table1.png" width="500" height="300" /&gt;
+]
+
+.pull-right[
+apa_print &gt;&gt;&gt; apa_table
+&lt;img src="img/table2.png" width="500" height="300" /&gt;
+]
+
+---
+class: left, top
+
+## 文章にも埋め込めまっせ
+
+- t検定
+
+
+```r
+out &lt;- apa_print(
+  t.test(yield ~ N, data = npk)
+)
+```
+
+
+```text
+Plant yield indeed differed between groups, `r out$full_result`.
+```
+
+&gt; Plant yield indeed differed between groups, `\(\Delta M = -5.62\)`, 95\% CI `\([-10.35\)`, `\(-0.88]\)`, `\(t(21.88) = -2.46\)`, `\(p = .022\)`.
+
+- 回帰分析
+
+
+```r
+out &lt;- apa_print(
+  lm(yield ~ N, data = npk)
+)
+```
+
+
+```text
+PPlant yield significantly predicted by groups, `r out$full_result$N1`.
+```
+
+&gt; Plant yield significantly predicted by groups, `\(b = 5.62\)`, 95\% CI `\([0.89\)`, `\(10.35]\)`, `\(t(22) = 2.46\)`, `\(p = .022\)`.
+
+
+---
+class: left, top
+
+## lm以外にも幅広く対応
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; A-B &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; B-L &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; L-S &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; S-Z &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; afex_aov &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; BFBayesFactorTop&lt;sup&gt;*&lt;/sup&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; lm &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; summary.aovlist &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; anova &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; default &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; lsmobj&lt;sup&gt;*&lt;/sup&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; summary.glht&lt;sup&gt;*&lt;/sup&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Anova.mlm &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; emmGrid&lt;sup&gt;*&lt;/sup&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; manova &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; summary.glm &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; aov &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; glht&lt;sup&gt;*&lt;/sup&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; papaja_wsci &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; summary.lm &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; aovlist &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; glm &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; summary_emm&lt;sup&gt;*&lt;/sup&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; summary.ref.grid&lt;sup&gt;*&lt;/sup&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; BFBayesFactor&lt;sup&gt;*&lt;/sup&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; htest &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; summary.Anova.mlm &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; BFBayesFactorList&lt;sup&gt;*&lt;/sup&gt; &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; list &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; summary.aov &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+class: left, top
+
+## APA 第7版にも対応できるよ
+
+[https://github.com/crsh/papaja/issues/342](https://github.com/crsh/papaja/issues/342)
+
+&lt;img src="img/apa7.png" width="500" height="300" /&gt;
+
+
+
+---
+class: inverse, center, middle
+
+# てかAPA系の雑誌にほとんど出さないんだが...
+
+
+---
+class: inverse, center, middle
+
+# そんなあなたにrticles
+
+
+---
+class: left, top
+
+# rticlesの守備範囲
+
+
+```r
+library(rticles)
+rticles::journals()
+```
+
+```
+##  [1] "acm"            "acs"            "aea"            "agu"           
+##  [5] "amq"            "ams"            "arxiv"          "asa"           
+##  [9] "bioinformatics" "biometrics"     "copernicus"     "ctex"          
+## [13] "elsevier"       "frontiers"      "ieee"           "joss"          
+## [17] "jss"            "lipics"         "mdpi"           "mnras"         
+## [21] "oup"            "peerj"          "plos"           "pnas"          
+## [25] "rjournal"       "rsos"           "rss"            "sage"          
+## [29] "sim"            "springer"       "tf"
+```
+
+- 手順は細かい指定の違いはあれどほぼpapajato
+操作は一緒
+
+- APA以外の表作成や作図テーマに関するTipsは[アカデミアのためのRStudio](https://ytake2.github.io/create.manuscript/RStudio_for_Academia.html#rticlesr-rticles)も参考に
+
+
+---
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan).
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
