@@ -14,7 +14,7 @@ output:
       countIncrementalSlides: false
 ---
 
-background-image: url(https://pbs.twimg.com/media/CasouLgUEAQvHrL.png)
+background-image: url(https://assets.media-platform.com/tarzan/dist/images/2020/02/23/tim0043s_thumb-w960.jpg)
 
 ```{css, echo=F}
 pre code, pre, code {
@@ -39,6 +39,10 @@ style_mono_light(base_color = "#23395b",
 )
 ```
 
+---
+class: inverse, center, middle
+
+# やればできる
 
 
 ---
