@@ -453,8 +453,55 @@ class: left, top
 
 
 ```r
-#remotes::install_github("ropensci/RefManageR")
-#remotes::install_github("crsh/citr")
+remotes::install_github("ropensci/RefManageR")
+```
+
+```
+## Downloading GitHub repo ropensci/RefManageR@HEAD
+```
+
+```
+## 
+##   
+   checking for file ‘/private/var/folders/4m/39dblk3573d9p3l3xn5jdfw80000gq/T/Rtmpr00u0I/remotese433072e4a/ropensci-RefManageR-ab8fe60/DESCRIPTION’ ...
+  
+✓  checking for file ‘/private/var/folders/4m/39dblk3573d9p3l3xn5jdfw80000gq/T/Rtmpr00u0I/remotese433072e4a/ropensci-RefManageR-ab8fe60/DESCRIPTION’ (955ms)
+## 
+  
+─  preparing ‘RefManageR’: (1.2s)
+## 
+  
+   checking DESCRIPTION meta-information ...
+  
+✓  checking DESCRIPTION meta-information
+## 
+  
+─  checking for LF line-endings in source and make files and shell scripts (927ms)
+## 
+  
+─  checking for empty or unneeded directories
+## 
+  
+   Removed empty directory ‘RefManageR/inst/pdf’
+## 
+  
+─  building ‘RefManageR_1.3.0.tar.gz’
+## 
+  
+   
+## 
+```
+
+```r
+remotes::install_github("crsh/citr")
+```
+
+```
+## Skipping install of 'citr' from a github remote, the SHA1 (c4ad0527) has not changed since last install.
+##   Use `force = TRUE` to force installation
+```
+
+```r
 library(citr)
 ```
 
@@ -811,17 +858,14 @@ rticles::journals()
 ```
 
 ```
-##  [1] "acm"            "acs"            "aea"           
-##  [4] "agu"            "amq"            "ams"           
-##  [7] "arxiv"          "asa"            "bioinformatics"
-## [10] "biometrics"     "copernicus"     "ctex"          
-## [13] "elsevier"       "frontiers"      "ieee"          
-## [16] "joss"           "jss"            "lipics"        
-## [19] "mdpi"           "mnras"          "oup"           
-## [22] "peerj"          "plos"           "pnas"          
-## [25] "rjournal"       "rsos"           "rss"           
-## [28] "sage"           "sim"            "springer"      
-## [31] "tf"
+##  [1] "acm"            "acs"            "aea"            "agu"           
+##  [5] "amq"            "ams"            "arxiv"          "asa"           
+##  [9] "bioinformatics" "biometrics"     "copernicus"     "ctex"          
+## [13] "elsevier"       "frontiers"      "ieee"           "joss"          
+## [17] "jss"            "lipics"         "mdpi"           "mnras"         
+## [21] "oup"            "peerj"          "plos"           "pnas"          
+## [25] "rjournal"       "rsos"           "rss"            "sage"          
+## [29] "sim"            "springer"       "tf"
 ```
 
 - 手順は細かい指定の違いはあれどほぼpapajato
